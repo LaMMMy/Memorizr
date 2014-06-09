@@ -18,12 +18,15 @@ public class Memorize extends ActionBarActivity {
         setContentView(R.layout.activity_memorize);
 
         Intent intent = getIntent();
-        String stringToMemorize = intent.getExtras().getString("stringToMemorize");
+        String[] stringToMemorize = intent.getExtras().getStringArray("stringToMemorize");
 
         TextView myTextView = (TextView)
                 findViewById(R.id.memoryText);
 
-        myTextView.setText(stringToMemorize);
+        String textToMemorize = this.BuildMemorizeText(stringToMemorize);
+
+        // initial test to display memory text
+        myTextView.setText(textToMemorize);
     }
 
 
@@ -44,5 +47,23 @@ public class Memorize extends ActionBarActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Builds a string with hidden tokens in place.
+    // TODO: store array of hidden words for later retrieval.
+    private String BuildMemorizeText(String[] stringToShow) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < stringToShow.length; i++) {
+            if(i % 4 == 0){
+                sb.append("________ ");
+            }
+            else {
+                sb.append(stringToShow[i]);
+                sb.append(" ");
+            }
+        }
+
+        return sb.toString();
     }
 }

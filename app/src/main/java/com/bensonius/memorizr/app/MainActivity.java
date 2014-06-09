@@ -13,7 +13,6 @@ import com.example.helloworld.app.R;
 
 
 public class MainActivity extends ActionBarActivity {
-    private String stringToMemorize = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +41,11 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void LoadButtonOnButtonClick(View v) {
-        Button button = (Button) v;
-        String bText = (String) button.getText();
-
+    
         TextView myTextView = (TextView)
                 findViewById(R.id.editText);
 
-        stringToMemorize = myTextView.getText().toString();
+        String[] stringToMemorize = myTextView.getText().toString().split(" ");
 
         Intent i = new Intent(this, Memorize.class);
         i.putExtra("stringToMemorize", stringToMemorize);
