@@ -13,7 +13,7 @@
         <item name="colorPrimary">@color/colourPrimary</item>
         <item name="colorPrimaryDark">@color/colourPrimaryDark</item>
         <item name="android:windowNoTitle">true</item>
-        <item name="windowActionBar">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">

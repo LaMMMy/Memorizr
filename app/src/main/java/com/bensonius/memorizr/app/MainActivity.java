@@ -37,7 +37,7 @@ public class MainActivity extends ActionBarActivity {
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, 0, 0);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // App Icon
         //drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
