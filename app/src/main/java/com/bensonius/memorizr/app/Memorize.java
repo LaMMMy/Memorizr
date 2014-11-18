@@ -1,8 +1,8 @@
 package com.bensonius.memorizr.app;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
@@ -54,7 +54,14 @@ public class Memorize extends ActionBarActivity {
 
     // Builds a string with hidden tokens in place.
     private void BuildMemorizeText(TextView textView, final String[] stringToShow) {
-        String[] blankedWords = new String[stringToShow.length / 4];
+        int numWordsTotal = stringToShow.length;
+        int numBlankedWords = numWordsTotal / 4;
+        if(numBlankedWords % 4 > 0) {
+            numBlankedWords += numBlankedWords % 4;
+        }
+
+        String[] blankedWords = new String[numBlankedWords];
+
         int currentWordLength;
         int blankCount = 0;
 
@@ -65,7 +72,7 @@ public class Memorize extends ActionBarActivity {
         go through each one and append individually to the TextView
         TODO: make sure it can handle very big chunk of text.
         */
-        for(int i = 0; i < stringToShow.length; i++) {
+        for(int i = 0; i < numWordsTotal; i++) {
             if(i % 4 == 0){
                 currentWordLength = stringToShow[i].length();
                 String hiddenWord = this.BuildBlankWord(currentWordLength);
@@ -77,6 +84,7 @@ public class Memorize extends ActionBarActivity {
                         //Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT).show();
                         Toast myToaster = Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT);
                         myToaster.setGravity(Gravity.TOP|Gravity.LEFT, 100, 100);
+                        myToaster.show();
                     }
                 });
 

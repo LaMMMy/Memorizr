@@ -1,0 +1,30 @@
+    <!-- The main content View -->
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout android:id="@+id/fullscreen_content_controls"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <Button android:id="@+id/enter_text_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="EnterTextButtonOnButtonClick"
+                android:text="Enter Free Text" />
+
+            <Button android:id="@+id/text_file_button"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="LoadButtonOnButtonClick"
+                android:text="Load Text File" />
+
+        </LinearLayout>
+    </FrameLayout>

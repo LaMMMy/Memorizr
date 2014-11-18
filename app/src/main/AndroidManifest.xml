@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bensonius.memorizr.app" >
 
+    <!-- android:theme="@style/Theme.AppCompat.Light.DarkActionBar" -->
     <application
         android:allowBackup="true"
-        android:debuggable="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/memorizr_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -13,7 +13,6 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

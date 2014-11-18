@@ -2,8 +2,18 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+   <!-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <item name="android:icon">@drawable/memorizr_logo</item>
+        <item name="icon">@drawable/memorizr_logo</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colourPrimary</item>
+        <item name="colorPrimaryDark">@color/colourPrimaryDark</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">

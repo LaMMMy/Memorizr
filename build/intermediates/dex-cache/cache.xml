@@ -1,29 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\support-v4-19.0.1-04dde37e48405b4442ed2e114457f34f6f27cab4.jar"
-        jar="C:\Program Files (x86)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.0.1\support-v4-19.0.1.jar"
+        jar="C:\Dev\Memorizr\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\libs\internal_impl-21.0.0.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="587da9a481ffd341d2fa091704489b89845ddacd"/>
+        revision="21.1.1"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0">
+        <dex dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.0-cd02e182d4a40df32fb9dd33a4f845a284c152e1.jar" />
+    </item>
     <item
-        dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\classes-59e0571b58e38d94f6dcd24574d42d5160fe95f8.jar"
-        jar="C:\Dev\Memorizr\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.0.1\classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="f71a6822470c9eb659d4f4a6cb57b780b35f058b"/>
-    <item
-        dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\commons-lang3-3.3.2-javadoc-0eb8e88a5601bcff411a4c19f61a55940be0b704.jar"
-        jar="C:\Dev\Memorizr\app\libs\commons-lang3-3.3.2-javadoc.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="5c674164aaffc4fada902dc7c2aadac07e7ce7da"/>
-    <item
-        dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\commons-lang3-3.3.2-1458e7de89200ca312a89f614600a0acc98a47a5.jar"
         jar="C:\Dev\Memorizr\app\libs\commons-lang3-3.3.2.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="659861b4acde07a0527211e40d256119face1d15"/>
+        revision="21.1.1"
+        sha1="659861b4acde07a0527211e40d256119face1d15">
+        <dex dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\commons-lang3-3.3.2-1458e7de89200ca312a89f614600a0acc98a47a5.jar" />
+    </item>
+    <item
+        jar="C:\Program Files (x86)\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.0\support-annotations-21.0.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e">
+        <dex dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.0-9528452d0a4563476596d64e06f21a3014c413f7.jar" />
+    </item>
+    <item
+        jar="C:\Dev\Memorizr\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="686344a780033e4ba22b926cd225f8d4941247e6">
+        <dex dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\classes-f67293831125f0fbb464d1996fe78bd6230769f7.jar" />
+    </item>
+    <item
+        jar="C:\Dev\Memorizr\app\libs\commons-lang3-3.3.2-javadoc.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="5c674164aaffc4fada902dc7c2aadac07e7ce7da">
+        <dex dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\commons-lang3-3.3.2-javadoc-0eb8e88a5601bcff411a4c19f61a55940be0b704.jar" />
+    </item>
+    <item
+        jar="C:\Dev\Memorizr\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="95fd37732ec852e99f07eeb516a3650172f1d136">
+        <dex dex="C:\Dev\Memorizr\app\build\intermediates\pre-dexed\debug\classes-e111efbc1d33fa2bccace276e39a26101c21e2df.jar" />
+    </item>
 
-</pre-dex-items>
+</items>
