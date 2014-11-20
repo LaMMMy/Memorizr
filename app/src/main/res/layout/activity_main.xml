@@ -6,12 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_awesome_toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?colorPrimary" />-->
+<!--    -->
+
 
     <!-- The main content view -->
     <FrameLayout
@@ -19,9 +15,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
+        <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"/>
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:minHeight="?attr/actionBarSize"
+            android:background="?colorPrimary" />
+
+        <!--<include-->
+            <!--android:id="@+id/toolbar"-->
+            <!--layout="@layout/toolbar"/>-->
 
     </FrameLayout>
 
