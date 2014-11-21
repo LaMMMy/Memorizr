@@ -9,4 +9,6 @@
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 
+    <attr name="toolbarHeight" format="integer">56dp</attr>
+
 </resources>

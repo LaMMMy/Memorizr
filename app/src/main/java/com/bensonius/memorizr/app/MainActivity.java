@@ -1,6 +1,7 @@
 package com.bensonius.memorizr.app;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.widget.DrawerLayout;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,9 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends ActionBarActivity {
     private String[] drawerListViewItems;
-    private DrawerLayout drawerLayout;
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mDrawerToggle;
     private ListView drawerListView;
     private Toolbar toolbar;
 
@@ -24,13 +26,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setActionBarIcon(R.drawable.ic_drawer);
         setContentView(R.layout.activity_main);
 
         // array of menu item names
         drawerListViewItems = getResources().getStringArray(R.array.menuItems);
+
         // drawer specified in activity_main.xml
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // the listview in activity_main
         drawerListView = (ListView) findViewById(R.id.left_drawer);
@@ -43,24 +45,47 @@ public class MainActivity extends BaseActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
+            setSupportActionBar(toolbar);
             toolbar.setNavigationIcon(R.drawable.ic_drawer);
 
-            toolbar.setTitle("Title");
-            toolbar.setSubtitle("Sub");
-            toolbar.setLogo(R.drawable.ic_launcher);
-            setSupportActionBar(toolbar);
+            mDrawerToggle = new ActionBarDrawerToggle(this,
+                    mDrawerLayout,
+                    toolbar,
+                    R.string.drawer_open,
+                    R.string.drawer_close) {
+
+                /** Called when a drawer has settled in a completely closed state. */
+                public void onDrawerClosed(View view) {
+                    super.onDrawerClosed(view);
+                    //getActionBar().setTitle(mTitle);
+                    //invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                }
+
+                /** Called when a drawer has settled in a completely open state. */
+                public void onDrawerOpened(View drawerView) {
+                    super.onDrawerOpened(drawerView);
+                    //getActionBar().setTitle(mDrawerTitle);
+                    //invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                }
+            };
+
+            // Set the drawer toggle as the DrawerListener
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
+            mDrawerToggle.syncState();
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
         }
 
         // App Icon
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
 
         // the code above should get the drawer opening and closing with a swipe.
         // Set the list's click listener -- for use with the app icon
         // drawerListView.setOnItemClickListener(new DrawerItemClickListener());
     }
 
-    @Override protected int getLayoutResource() {
+    protected int getLayoutResource() {
         return R.layout.activity_main;
     }
 
@@ -85,12 +110,25 @@ public class MainActivity extends BaseActivity {
 
         switch (item.getItemId()) {
             case android.R.id.home:
-                drawerLayout.openDrawer(Gravity.START);
+                mDrawerLayout.openDrawer(Gravity.START);
                 return true;
             case R.id.action_settings:
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     // opens up the screen to manually type in text to memorize
