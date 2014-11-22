@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.bensonius.memorizr.app.InputFragment">
+
+        <EditText android:id="@+id/fullscreen_content"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:keepScreenOn="true"
+            android:textColor="#A1A1A1"
+            android:textSize="16sp"
+            android:layout_marginBottom="40dp"
+            android:gravity="top|left"
+            android:text="When I was young and in my Prime.\n I left my home in Caroline\n Now all I do is sit and Pine\n For all those Folks I left behind." />
+
+        <Button android:id="@+id/memorize_text_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:fadingEdge="none"
+            android:onClick="MemorizeTextButtonOnButtonClick"
+            android:text="Memorize"
+            android:layout_marginBottom="0dp"/>
+</RelativeLayout>
