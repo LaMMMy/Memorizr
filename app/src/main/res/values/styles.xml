@@ -10,8 +10,8 @@
     </style>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat">
-        <item name="colorPrimary">@color/colourPrimary</item>
-        <item name="colorPrimaryDark">@color/colourPrimaryDark</item>
+        <item name="colorPrimary">@color/memorizr_colourPrimary</item>
+        <item name="colorPrimaryDark">@color/memorizr_colourPrimaryDark</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>

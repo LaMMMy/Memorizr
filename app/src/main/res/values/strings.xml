@@ -11,6 +11,8 @@
     <string name="title_activity_enter_text">Enter Text</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="memorizr_colourPrimary">#FACEBB</string>
+    <string name="memorizr_colourPrimaryDark">#FF4D00</string>
 
     <string-array name="menuItems">
         <item>Memorize Text</item>

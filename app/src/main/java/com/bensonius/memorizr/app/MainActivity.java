@@ -1,6 +1,5 @@
 package com.bensonius.memorizr.app;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -18,10 +17,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity implements InputFragment.OnFragmentInteractionListener {
-    private String[] drawerListViewItems;
+public class MainActivity
+        extends ActionBarActivity
+        implements InputFragment.OnFragmentInteractionListener {
+
+    // private String[] drawerListViewItems;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private ListView drawerListView;
@@ -37,7 +40,7 @@ public class MainActivity extends ActionBarActivity implements InputFragment.OnF
         setContentView(R.layout.activity_main);
 
         // array of menu item names
-        drawerListViewItems = getResources().getStringArray(R.array.menuItems);
+        String[] drawerListViewItems = getResources().getStringArray(R.array.menuItems);
 
         // drawer specified in activity_main.xml
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -48,8 +51,6 @@ public class MainActivity extends ActionBarActivity implements InputFragment.OnF
         // Set the adapter for the list view
         drawerListView.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_list_item, drawerListViewItems));
-
-        //actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.drawable.memorizr_logo);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -86,12 +87,6 @@ public class MainActivity extends ActionBarActivity implements InputFragment.OnF
         drawerListView.setOnItemClickListener(new DrawerItemClickListener());
     }
 
-    //@Override
-    protected int getLayoutResource() {
-        return R.layout.activity_main;
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -102,14 +97,6 @@ public class MainActivity extends ActionBarActivity implements InputFragment.OnF
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(Gravity.START);
@@ -142,9 +129,11 @@ public class MainActivity extends ActionBarActivity implements InputFragment.OnF
 
     /** Swaps fragments in the main content view */
     private void selectItem(int position) {
+
         // Create a new fragment and specify the planet to show based on position
         Fragment fragment = new InputFragment();
         Bundle args = new Bundle();
+
         args.putInt(InputFragment.ARG_PARAM1, position);
         fragment.setArguments(args);
 
@@ -156,29 +145,33 @@ public class MainActivity extends ActionBarActivity implements InputFragment.OnF
 
         // Highlight the selected item, update the title, and close the drawer
         drawerListView.setItemChecked(position, true);
-        //setTitle(drawerListViewItems[position]);
+        // SetTitle(drawerListViewItems[position]);
         mDrawerLayout.closeDrawer(drawerListView);
     }
 
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
-        getActionBar().setTitle(mTitle);
+        getSupportActionBar().setTitle(mTitle);
     }
 
     public void onFragmentInteraction(Uri uri){
     }
 
-    // opens up the screen to manually type in text to memorize
-    public void EnterTextButtonOnButtonClick(View v) {
+    /** Opens up the Activity to actually memorize the entered text. */
+    public void MemorizeTextButtonOnButtonClick(View v) {
 
-        //TextView myTextView = (TextView)
-        //        findViewById(R.id.enter_text_button);
+        TextView myTextView = (TextView)
+                findViewById(R.id.fullscreen_content);
 
-        //String[] stringToMemorize = myTextView.getText().toString().split(" ");
+        // make an array of all the words so they can be blanked out on the memorize screen
+        // where necessary
+        String[] stringToMemorize = myTextView.getText().toString().split(" ");
 
-        Intent i = new Intent(this, EnterText.class);
-        //i.putExtra("stringToMemorize", stringToMemorize);
+        // want to call the Activity for actually memorizing now.
+        Intent i = new Intent(this, Memorize.class);
+        // add the string array to the intent call.
+        i.putExtra("stringToMemorize", stringToMemorize);
         startActivity(i);
     }
 

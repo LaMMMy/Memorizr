@@ -1,7 +1,7 @@
 <resources>
 
     <color name="black_overlay">#66000000</color>
-    <color name="colourPrimary">#FACEBB</color>
-    <color name="colourPrimaryDark">#FF4D00</color>
+    <color name="memorizr_colourPrimary">#FACEBB</color>
+    <color name="memorizr_colourPrimaryDark">#FF4D00</color>
 
 </resources>

@@ -1,12 +1,16 @@
 package com.bensonius.memorizr.app;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.method.MovementMethod;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,10 +50,7 @@ public class Memorize extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
     }
 
     // Builds a string with hidden tokens in place.
@@ -75,7 +76,7 @@ public class Memorize extends ActionBarActivity {
         for(int i = 0; i < numWordsTotal; i++) {
             if(i % 4 == 0){
                 currentWordLength = stringToShow[i].length();
-                String hiddenWord = this.BuildBlankWord(currentWordLength);
+                final String hiddenWord = this.BuildBlankWord(currentWordLength);
                 final int index = i;
 
                 final SpannableString hiddenWordLink = MakeLinkSpan(hiddenWord, new View.OnClickListener() {
@@ -83,10 +84,13 @@ public class Memorize extends ActionBarActivity {
                     public void onClick(View v) {
                         //Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT).show();
                         Toast myToaster = Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT);
-                        myToaster.setGravity(Gravity.TOP|Gravity.LEFT, 100, 100);
+                        myToaster.setGravity(Gravity.TOP | Gravity.LEFT, 100, 100);
                         myToaster.show();
                     }
                 });
+
+                hiddenWordLink.setSpan(new ForegroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))), 0, hiddenWordLink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                hiddenWordLink.setSpan(new BackgroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))), 0, hiddenWordLink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                 textView.append(hiddenWordLink);
 
@@ -106,8 +110,7 @@ public class Memorize extends ActionBarActivity {
 
     // basically just builds a string of consecutive underscores that are the length of the word it's replacing.
     private String BuildBlankWord(int wordLength){
-        String blank = StringUtils.leftPad("", wordLength, '_') + " ";
-        return blank;
+        return StringUtils.leftPad("", wordLength, '_');
     }
 
 /*
