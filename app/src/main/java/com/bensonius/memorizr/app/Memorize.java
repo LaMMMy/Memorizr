@@ -28,12 +28,16 @@ public class Memorize extends ActionBarActivity {
         setContentView(R.layout.activity_memorize);
 
         Intent intent = getIntent();
-        String[] incomingString = intent.getExtras().getStringArray("stringToMemorize");
+
+        String incomingString = intent.getExtras().getString("stringToMemorize");
+        // the ?<=[\\s] tells the regex to look at things surrounding teh spaces.
+        // TODO: learn more about it
+        String[] incomingStringArray = incomingString.split("(?<=[\\s])");
 
         TextView myTextView = (TextView)
                 findViewById(R.id.memoryText);
 
-        this.BuildMemorizeText(myTextView, incomingString);
+        this.BuildMemorizeText(myTextView, incomingStringArray);
     }
 
 
@@ -54,8 +58,8 @@ public class Memorize extends ActionBarActivity {
     }
 
     // Builds a string with hidden tokens in place.
-    private void BuildMemorizeText(TextView textView, final String[] stringToShow) {
-        int numWordsTotal = stringToShow.length;
+    private void BuildMemorizeText(TextView textView, final String[] stringToShowArray) {
+        int numWordsTotal = stringToShowArray.length;
         int numBlankedWords = numWordsTotal / 4;
         if(numBlankedWords % 4 > 0) {
             numBlankedWords += numBlankedWords % 4;
@@ -71,11 +75,10 @@ public class Memorize extends ActionBarActivity {
         /*
         the words of the text are passed as an array of Strings
         go through each one and append individually to the TextView
-        TODO: make sure it can handle very big chunk of text.
         */
         for(int i = 0; i < numWordsTotal; i++) {
             if(i % 4 == 0){
-                currentWordLength = stringToShow[i].length();
+                currentWordLength = stringToShowArray[i].length();
                 final String hiddenWord = this.BuildBlankWord(currentWordLength);
                 final int index = i;
 
@@ -83,7 +86,7 @@ public class Memorize extends ActionBarActivity {
                     @Override
                     public void onClick(View v) {
                         //Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT).show();
-                        Toast myToaster = Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT);
+                        Toast myToaster = Toast.makeText(Memorize.this, stringToShowArray[index], Toast.LENGTH_SHORT);
                         myToaster.setGravity(Gravity.TOP | Gravity.LEFT, 100, 100);
                         myToaster.show();
                     }
@@ -93,16 +96,12 @@ public class Memorize extends ActionBarActivity {
                 hiddenWordLink.setSpan(new BackgroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))), 0, hiddenWordLink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
                 textView.append(hiddenWordLink);
-
-                // add the word to those that are blanked out
-                blankedWords[blankCount] = stringToShow[i];
-                blankCount++;
             }
             else {
-                textView.append(stringToShow[i]);
+                textView.append(stringToShowArray[i]);
             }
 
-            textView.append(" ");
+           // textView.append(" ");
         }
 
         MakeLinksFocusable(textView);

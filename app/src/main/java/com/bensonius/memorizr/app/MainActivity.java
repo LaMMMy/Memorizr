@@ -166,7 +166,8 @@ public class MainActivity
 
         // make an array of all the words so they can be blanked out on the memorize screen
         // where necessary
-        String[] stringToMemorize = myTextView.getText().toString().split(" ");
+//        String[] stringToMemorize = myTextView.getText().toString().split(" ");
+        String stringToMemorize = myTextView.getText().toString();
 
         // want to call the Activity for actually memorizing now.
         Intent i = new Intent(this, Memorize.class);
