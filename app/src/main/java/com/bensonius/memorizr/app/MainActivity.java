@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,14 +25,15 @@ public class MainActivity
         extends ActionBarActivity
         implements InputFragment.OnFragmentInteractionListener {
 
-    // private String[] drawerListViewItems;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-    private ListView drawerListView;
-    private Toolbar toolbar;
+    private ListView mDrawerListView;
+    private Toolbar mToolbar;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private InputFragment.OnFragmentInteractionListener mListener;
+    private ObjectDrawerItem[] mDrawerItems;
+    private String[] mDrawerItemTitles;
 
 
     @Override
@@ -40,26 +42,38 @@ public class MainActivity
         setContentView(R.layout.activity_main);
 
         // array of menu item names
-        String[] drawerListViewItems = getResources().getStringArray(R.array.menuItems);
+        mDrawerItemTitles = getResources().getStringArray(R.array.menuItems);
+
+        mDrawerItems = new ObjectDrawerItem[3];
+
+        mDrawerItems[0] = new ObjectDrawerItem(R.drawable.ic_action_edit, "Enter Text");
+        mDrawerItems[1] = new ObjectDrawerItem(R.drawable.ic_action_new, "Load File");
+        mDrawerItems[2] = new ObjectDrawerItem(R.drawable.ic_action_help, "Help");
+
+        // pass to the custom adapter
+        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, mDrawerItems);
 
         // drawer specified in activity_main.xml
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         // the listview in activity_main
-        drawerListView = (ListView) findViewById(R.id.left_drawer);
+        //drawerListView = (ListView) findViewById(R.id.left_drawer);
+
+        // #11 https://www.codeofaninja.com/2014/02/android-navigation-drawer-example.html
+        mDrawerListView.setAdapter(adapter);
 
         // Set the adapter for the list view
-        drawerListView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, drawerListViewItems));
+        //drawerListView.setAdapter(new ArrayAdapter<String>(this,
+          //      R.layout.listview_item_row, drawerListViewItems));
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            toolbar.setNavigationIcon(R.drawable.ic_drawer);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+            mToolbar.setNavigationIcon(R.drawable.ic_drawer);
 
             mDrawerToggle = new ActionBarDrawerToggle(this,
                     mDrawerLayout,
-                    toolbar,
+                    mToolbar,
                     R.string.drawer_open,
                     R.string.drawer_close) {
 
@@ -84,7 +98,7 @@ public class MainActivity
 
         // the code above should get the drawer opening and closing with a swipe.
         // Set the list's click listener -- for use with the app icon
-        drawerListView.setOnItemClickListener(new DrawerItemClickListener());
+        mDrawerListView.setOnItemClickListener(new DrawerItemClickListener());
     }
 
     @Override
@@ -130,23 +144,47 @@ public class MainActivity
     /** Swaps fragments in the main content view */
     private void selectItem(int position) {
 
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new InputFragment();
+                break;
+            case 1:
+                fragment = new LostFileFragment();
+                break;
+            case 2:
+                fragment = new HelpFragment();
+                break;
+
+            default:
+                break;
+        }
+
         // Create a new fragment and specify the planet to show based on position
-        Fragment fragment = new InputFragment();
+        //Fragment fragment = new InputFragment();
         Bundle args = new Bundle();
 
         args.putInt(InputFragment.ARG_PARAM1, position);
         fragment.setArguments(args);
 
-        // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
-                .commit();
 
-        // Highlight the selected item, update the title, and close the drawer
-        drawerListView.setItemChecked(position, true);
-        // SetTitle(drawerListViewItems[position]);
-        mDrawerLayout.closeDrawer(drawerListView);
+        if(fragment != null) {
+            // Insert the fragment by replacing any existing fragment
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+
+            // Highlight the selected item, update the title, and close the drawer
+            mDrawerListView.setItemChecked(position, true);
+            mDrawerListView.setSelection(position);
+            getActionBar().setTitle(mDrawerItemTitles[position]);
+            // SetTitle(mDrawerItemTitles[position]);
+            mDrawerLayout.closeDrawer(mDrawerListView);
+        }
+        else{
+            Log.e("MainActivity", "Error in creating fragment");
+        }
     }
 
     @Override

@@ -15,7 +15,8 @@
     <string name="memorizr_colourPrimaryDark">#FF4D00</string>
 
     <string-array name="menuItems">
-        <item>Memorize Text</item>
+        <item>Enter Text</item>
+        <item>Load Text File</item>
     </string-array>
 
     <string name="drawer_open">open drawer</string>

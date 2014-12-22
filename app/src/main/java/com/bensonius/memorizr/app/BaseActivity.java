@@ -36,7 +36,7 @@ public abstract class BaseActivity extends ActionBarActivity {
 
         // Set the adapter for the list view
         drawerListView.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, drawerListViewItems));
+                R.layout.listview_item_row, drawerListViewItems));
 
         //actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.drawable.ic_drawer, R.drawable.memorizr_logo);
 
