@@ -11,8 +11,10 @@
     <string name="title_activity_enter_text">Enter Text</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="memorizr_colourPrimary">#FACEBB</string>
-    <string name="memorizr_colourPrimaryDark">#FF4D00</string>
+
+    <!-- For use in the colourizing of spannable links -->
+    <string name="memorizr_colourPrimary">#E4EAE4</string>
+    <string name="memorizr_colourPrimaryDark">#73E473</string>
 
     <string-array name="menuItems">
         <item>Enter Text</item>

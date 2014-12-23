@@ -16,14 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 
 public class MainActivity
         extends ActionBarActivity
-        implements InputFragment.OnFragmentInteractionListener {
+        implements InputFragment.OnInputFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -31,7 +30,7 @@ public class MainActivity
     private Toolbar mToolbar;
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
-    private InputFragment.OnFragmentInteractionListener mListener;
+    private InputFragment.OnInputFragmentInteractionListener mListener;
     private ObjectDrawerItem[] mDrawerItems;
     private String[] mDrawerItemTitles;
 
@@ -51,20 +50,16 @@ public class MainActivity
         mDrawerItems[2] = new ObjectDrawerItem(R.drawable.ic_action_help, "Help");
 
         // pass to the custom adapter
-        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this, R.layout.listview_item_row, mDrawerItems);
+        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(this,
+                R.layout.listview_item_row,
+                mDrawerItems);
 
         // drawer specified in activity_main.xml
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        // the listview in activity_main
-        //drawerListView = (ListView) findViewById(R.id.left_drawer);
-
         // #11 https://www.codeofaninja.com/2014/02/android-navigation-drawer-example.html
+        mDrawerListView = (ListView) findViewById(R.id.left_drawer);
         mDrawerListView.setAdapter(adapter);
-
-        // Set the adapter for the list view
-        //drawerListView.setAdapter(new ArrayAdapter<String>(this,
-          //      R.layout.listview_item_row, drawerListViewItems));
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         if (mToolbar != null) {
@@ -150,11 +145,11 @@ public class MainActivity
                 fragment = new InputFragment();
                 break;
             case 1:
-                fragment = new LostFileFragment();
+                fragment = new LoadFileFragment();
                 break;
-            case 2:
-                fragment = new HelpFragment();
-                break;
+//            case 2:
+//                fragment = new HelpFragment();
+//                break;
 
             default:
                 break;
@@ -178,7 +173,7 @@ public class MainActivity
             // Highlight the selected item, update the title, and close the drawer
             mDrawerListView.setItemChecked(position, true);
             mDrawerListView.setSelection(position);
-            getActionBar().setTitle(mDrawerItemTitles[position]);
+            getSupportActionBar().setTitle(mDrawerItemTitles[position]);
             // SetTitle(mDrawerItemTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerListView);
         }
@@ -193,7 +188,7 @@ public class MainActivity
         getSupportActionBar().setTitle(mTitle);
     }
 
-    public void onFragmentInteraction(Uri uri){
+    public void onInputFragmentInteraction(Uri uri){
     }
 
     /** Opens up the Activity to actually memorize the entered text. */

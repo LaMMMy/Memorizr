@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Random;
+
 public class Memorize extends ActionBarActivity {
 
     @Override
@@ -77,25 +79,41 @@ public class Memorize extends ActionBarActivity {
         go through each one and append individually to the TextView
         */
         for(int i = 0; i < numWordsTotal; i++) {
-            if(i % 4 == 0){
-                currentWordLength = stringToShowArray[i].length();
-                final String hiddenWord = this.BuildBlankWord(currentWordLength);
-                final int index = i;
 
-                final SpannableString hiddenWordLink = MakeLinkSpan(hiddenWord, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT).show();
-                        Toast myToaster = Toast.makeText(Memorize.this, stringToShowArray[index], Toast.LENGTH_SHORT);
-                        myToaster.setGravity(Gravity.TOP | Gravity.LEFT, 100, 100);
-                        myToaster.show();
-                    }
-                });
+            Random rand = new Random();
+            // nextInt is normally exclusive of the top value,
+            // so add 1 to make it inclusive
+            int randomNum = rand.nextInt((5 - 2) + 1) + 2;
 
-                hiddenWordLink.setSpan(new ForegroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))), 0, hiddenWordLink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                hiddenWordLink.setSpan(new BackgroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))), 0, hiddenWordLink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if(i % randomNum == 0){
+                currentWordLength = stringToShowArray[i].trim().length();
+                if(currentWordLength > 0) {
+                    final String hiddenWord = this.BuildBlankWord(currentWordLength);
+                    final int index = i;
 
-                textView.append(hiddenWordLink);
+                    final SpannableString hiddenWordLink = MakeLinkSpan(hiddenWord, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //Toast.makeText(Memorize.this, stringToShow[index], Toast.LENGTH_SHORT).show();
+                            Toast myToaster = Toast.makeText(Memorize.this, stringToShowArray[index].trim(), Toast.LENGTH_SHORT);
+                            myToaster.setGravity(Gravity.TOP | Gravity.LEFT, 100, 100);
+                            myToaster.show();
+                        }
+                    });
+
+                    hiddenWordLink.setSpan(new ForegroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))),
+                            0,
+                            hiddenWordLink.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                    hiddenWordLink.setSpan(new BackgroundColorSpan(Color.parseColor(getResources().getString(R.string.memorizr_colourPrimaryDark))),
+                            0,
+                            hiddenWordLink.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                    textView.append(hiddenWordLink);
+                    textView.append(" ");
+                }
             }
             else {
                 textView.append(stringToShowArray[i]);

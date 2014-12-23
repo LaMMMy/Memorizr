@@ -1,25 +1,17 @@
 package com.bensonius.memorizr.app;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link com.bensonius.memorizr.app.InputFragment.OnInputFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link InputFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by lott on 22/12/2014.
  */
-public class InputFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class LoadFileFragment extends Fragment {
     protected static final String ARG_PARAM1 = "param1";
     protected static final String ARG_PARAM2 = "param2";
 
@@ -27,7 +19,7 @@ public class InputFragment extends Fragment {
     private int mParam1;
     private String mParam2;
 
-    private OnInputFragmentInteractionListener mListener;
+    private OnLoadFileFragmentInteractionListener mListener;
 
     /**
      * Use this factory method to create a new instance of
@@ -35,11 +27,11 @@ public class InputFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment InputFragment.
+     * @return A new instance of fragment LoadFileFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static InputFragment newInstance(int param1, String param2) {
-        InputFragment fragment = new InputFragment();
+    public static LoadFileFragment newInstance(int param1, String param2) {
+        LoadFileFragment fragment = new LoadFileFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -47,7 +39,7 @@ public class InputFragment extends Fragment {
         return fragment;
     }
 
-    public InputFragment() {
+    public LoadFileFragment() {
         // Required empty public constructor
     }
 
@@ -70,7 +62,7 @@ public class InputFragment extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onInputFragmentInteraction(uri);
+            mListener.onLoadFileFragmentInteraction(uri);
         }
     }
 
@@ -78,10 +70,10 @@ public class InputFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnInputFragmentInteractionListener) activity;
+            mListener = (OnLoadFileFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnInputFragmentInteractionListener");
+                    + " must implement OnLoadFileFragmentInteractionListener");
         }
     }
 
@@ -101,9 +93,8 @@ public class InputFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnInputFragmentInteractionListener {
+    public interface OnLoadFileFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onInputFragmentInteraction(Uri uri);
+        public void onLoadFileFragmentInteraction(Uri uri);
     }
-
 }
