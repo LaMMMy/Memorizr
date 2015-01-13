@@ -2,6 +2,7 @@ package com.bensonius.memorizr.app;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -18,6 +19,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class MainActivity
@@ -207,6 +213,33 @@ public class MainActivity
         // add the string array to the intent call.
         i.putExtra("stringToMemorize", stringToMemorize);
         startActivity(i);
+    }
+
+    public void SaveFileButtonOnButtonClick(View v) {
+        TextView myTextView = (TextView)
+                findViewById(R.id.fullscreen_content);
+
+        String fileName = "memoryText.xml";
+        String data = myTextView.getText().toString();
+
+        FileOutputStream fos;
+        try {
+            fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+            //default mode is PRIVATE, can be APPEND etc.
+            fos.write(data.getBytes());
+            fos.close();
+
+            Toast.makeText(getApplicationContext(), fileName + " saved",
+                    Toast.LENGTH_LONG).show();
+
+
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // opens up the screen to load a file for text memorize

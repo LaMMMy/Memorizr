@@ -17,14 +17,26 @@
             android:text="When I was young and in my Prime.\n I left my home in Caroline\n Now all I do is sit and Pine\n For all those Folks I left behind." />
 
         <Button android:id="@+id/memorize_text_button"
-            android:layout_below="@+id/fullscreen_content"
-            android:background="@color/memorizr_colourPrimaryDark"
+            android:background="@drawable/primary_round"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="false"
-            android:layout_centerHorizontal="true"
-            android:fadingEdge="none"
             android:onClick="MemorizeTextButtonOnButtonClick"
             android:text="Memorize"
-            android:layout_marginBottom="0dp"/>
+            android:stateListAnimator="@null"
+            android:layout_below="@+id/fullscreen_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="66dp" />
+
+        <Button android:id="@+id/save_text_button"
+            android:background="@drawable/primary_round"
+            android:shadowRadius="20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="SaveFileButtonOnButtonClick"
+            android:text="Save File"
+            android:stateListAnimator="@null"
+            android:layout_alignTop="@+id/memorize_text_button"
+            android:layout_toEndOf="@+id/memorize_text_button"
+            android:layout_marginStart="56dp" />
+
 </RelativeLayout>

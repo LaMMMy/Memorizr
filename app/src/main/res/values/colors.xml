@@ -4,5 +4,6 @@
     <color name="memorizr_colourPrimary">#E4EAE4</color>
     <color name="memorizr_colourPrimaryDark">#73E473</color>
     <color name="memorizr_colourTextDark">#000E00</color>
+    <color name="memorizr_colourTextLight">#FFFFFF</color>
 
 </resources>
