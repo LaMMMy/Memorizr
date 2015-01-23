@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -219,12 +220,24 @@ public class MainActivity
         TextView myTextView = (TextView)
                 findViewById(R.id.fullscreen_content);
 
+        String filePath = getResources().getString(R.string.defaultFilePath);
         String fileName = "memoryText.xml";
         String data = myTextView.getText().toString();
 
+
         FileOutputStream fos;
         try {
-            fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+
+            // create a File object for the parent directory
+            File dir = new File(filePath);
+            // have the object build the directory structure, if needed.
+            dir.mkdirs();
+            // create a File object for the output file
+            File outputFile = new File(dir, fileName);
+            // now attach the OutputStream to the file object, instead of a String representation
+            fos = new FileOutputStream(outputFile);
+
+            //fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             //default mode is PRIVATE, can be APPEND etc.
             fos.write(data.getBytes());
             fos.close();

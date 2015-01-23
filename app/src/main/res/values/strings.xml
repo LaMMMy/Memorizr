@@ -9,8 +9,7 @@
     <string name="button_string">Load Text</string>
     <string name="memoryText"></string>
     <string name="title_activity_enter_text">Enter Text</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="defaultFilePath">/sdcard/Android/data/com.bensonius.memorizr.app/files/</string>
 
     <!-- For use in the colourizing of spannable links -->
     <string name="memorizr_colourPrimary">#E4EAE4</string>
